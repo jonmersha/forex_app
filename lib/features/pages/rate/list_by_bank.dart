@@ -62,21 +62,18 @@ class _CurrencyRatesListState extends State<CurrencyRatesList> {
             return ExpansionTile(
               title: Text(bankName),
               children: rates.map((item) {
-                return Card(
-                  margin: EdgeInsets.all(8.0),
-                  child: ListTile(
-                    contentPadding: EdgeInsets.all(16.0),
-                    title: Text(item['currency_name']),
-                    subtitle: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Date: ${item['rate_date']}'),
-                        Text('Buying Cash: ${item['buying_cash']}'),
-                        //Text('Buying Transaction: ${item['buying_transaction']}'),
-                        Text('Selling Cash: ${item['selling_cash']}'),
-                        //Text('Selling Transaction: ${item['selling_transaction']}'),
-                      ],
-                    ),
+                return ListTile(
+                  contentPadding: EdgeInsets.all(16.0),
+                  title: Text(item['currency_name']),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Date: ${item['rate_date']}'),
+                      Text('Buying Cash: ${item['buying_cash']}'),
+                      //Text('Buying Transaction: ${item['buying_transaction']}'),
+                      Text('Selling Cash: ${item['selling_cash']}'),
+                      //Text('Selling Transaction: ${item['selling_transaction']}'),
+                    ],
                   ),
                 );
               }).toList(),

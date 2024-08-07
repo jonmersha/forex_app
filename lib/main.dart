@@ -1,4 +1,6 @@
-import 'package:currency/features/pages/rate/list_by_bank.dart';
+import 'package:currency/features/pages/home/dash_bord.dart';
+import 'package:currency/features/pages/rate/buying_order_rates.dart';
+import 'package:currency/features/pages/rate/list_bank_collum.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  MyHomePage(title: "Home",),
+      home:  DashBord(),
     );
   }
 }
@@ -42,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: CurrencyRatesList()
+      body: BuyingOrdered()
 
       //RateCard()
        // This trailing comma makes auto-formatting nicer for build methods.

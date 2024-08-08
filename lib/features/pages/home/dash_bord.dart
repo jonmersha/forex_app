@@ -1,6 +1,9 @@
-import 'package:currency/features/pages/home/currency_calculate.dart';
-import 'package:currency/features/pages/rate/buying_order_rates.dart';
-import 'package:currency/features/pages/rate/list_bank_collum.dart';
+import 'package:currency/features/pages/home/chield_page/currency_calculate.dart';
+import 'package:currency/features/pages/home/chield_page/group_by_currency.dart';
+import 'package:currency/features/pages/home/chield_page/group_by_currency_h.dart';
+import 'package:currency/features/pages/rate/forms/csv_file_upload.dart';
+import 'package:currency/features/pages/rate/forms/rate_rigistrations.dart';
+import 'package:currency/features/pages/home/chield_page/group_by_bank.dart';
 import 'package:flutter/material.dart';
 
 class DashBord extends StatefulWidget {
@@ -15,7 +18,7 @@ class _DashBordState extends State<DashBord> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Forex App'),
+        title: const Text('Forex'),
       ),
       body: _buildBody(),
       bottomNavigationBar: BottomNavigationBar(
@@ -25,7 +28,7 @@ class _DashBordState extends State<DashBord> {
             _currentIndex = index;
           });
         },
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.currency_exchange),
             label: 'Currency',
@@ -46,21 +49,23 @@ class _DashBordState extends State<DashBord> {
   Widget _buildBody() {
     switch (_currentIndex) {
       case 0:
-        return BuyingOrdered();
+        return GroupByCurencyH();
       case 1:
-        return CurrencyRatesList();
+        return GroupByBank();
       case 2:
         return CurrencyRatesCalculator();
       default:
-        return Container();
+        return RateRegistrationPage();
     }
   }
 }
 
 class HistoricalRatesPage extends StatelessWidget {
+  const HistoricalRatesPage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text('Historical Rates'),
     );
   }

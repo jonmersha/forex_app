@@ -1,13 +1,13 @@
 import 'package:currency/utils/app_constants.dart';
 import 'package:flutter/material.dart';
-class CalculationPage extends StatefulWidget {
+class BankDetails extends StatefulWidget {
   final Map<String, dynamic> rate;
-  CalculationPage({required this.rate});
+  BankDetails({required this.rate});
   @override
-  _CalculationPageState createState() => _CalculationPageState();
+  _BankDetailsState createState() => _BankDetailsState();
 }
 
-class _CalculationPageState extends State<CalculationPage> {
+class _BankDetailsState extends State<BankDetails> {
   final TextEditingController _amountController = TextEditingController();
   double _convertedAmountBuying = 0.0;
   double _convertedAmountSelling = 0.0;
@@ -38,13 +38,13 @@ class _CalculationPageState extends State<CalculationPage> {
           children: [
             Container(
               height: 250,
-             // width: 70,
+              // width: 70,
               decoration: BoxDecoration(
                   color: Colors.white30,
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
                       image: NetworkImage('${staticContent}/${widget.rate['logo']}'),
-                    fit: BoxFit.fitWidth
+                      fit: BoxFit.fitWidth
                   )
               ),
             ),

@@ -10,7 +10,8 @@ const highRate ='${BASE_URL}/forex/rate/new';
 const staticContent ='${BASE_URL}/static/forex/bank';
 const currencyLogo ='${BASE_URL}/static/forex/currency';
 
-const DATA = '/shopping/data';
+const DATA = '${BASE_URL}/forex/data';
+
 const ADD = '/shopping/add';
 
 const USER = '/shopping/user';

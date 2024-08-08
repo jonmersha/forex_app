@@ -1,5 +1,6 @@
 import 'dart:convert';
-import 'package:currency/features/pages/home/calculation_page.dart';
+import 'package:currency/features/methods/methods.dart';
+import 'package:currency/features/pages/home/chield_page/calculation_page.dart';
 import 'package:currency/utils/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -55,7 +56,7 @@ class _CurrencyRatesCalculatorState extends State<CurrencyRatesCalculator> {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
-          return Center(child: Text('Error: ${snapshot.error}'));
+          return const Center(child: Text('Error: Check Your Connection'));
         } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
           return const Center(child: Text('No data available'));
         }
@@ -69,7 +70,7 @@ class _CurrencyRatesCalculatorState extends State<CurrencyRatesCalculator> {
             return Container(
               margin: const EdgeInsets.all(8.0),
               child: Padding(
-                padding: const EdgeInsets.all(5.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -83,8 +84,8 @@ class _CurrencyRatesCalculatorState extends State<CurrencyRatesCalculator> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(left: 15),
-                          height: 20,
+                          margin: const EdgeInsets.only(left: 15),
+                          height: 30,
                           width: 30,
                           decoration: BoxDecoration(
                               color: Colors.white30,
@@ -100,66 +101,71 @@ class _CurrencyRatesCalculatorState extends State<CurrencyRatesCalculator> {
                     ),
                     const Divider(),
                     Container(
-
                       child: Column(
                         children: rates.map((item) {
                           return Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 2.0),
+                            padding: const EdgeInsets.symmetric(vertical: 3.0),
                             child: Container(
-
                               decoration: BoxDecoration(
                                 color:Colors.grey.shade100,
                                 borderRadius: BorderRadius.circular(10)
                               ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  //Text(item['bank_name']),
-                                  Container(
-                                   height: 50,
-                                    width: 50,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white30,
-                                      borderRadius: BorderRadius.circular(10),
-                                      image: DecorationImage(
-                                        image: NetworkImage('${staticContent}/${item['logo']}'),
-                                        fit: BoxFit.fitWidth
+                              child:
+                              Container(
+                                decoration: BoxDecoration(
+                                  color:ColorConverter.fromHex('${item['color_back']}'),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    //Text(item['bank_name']),
+                                    Container(
+                                     height: 70,
+                                      width: 70,
+                                      margin: EdgeInsets.all(2),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(35),
+                                        image: DecorationImage(
+                                          image: NetworkImage('${staticContent}/${item['logo']}'),
+                                          fit: BoxFit.fitWidth
 
-                                      )
+                                        )
+                                      ),
                                     ),
-                                  ),
-                                  SizedBox(width: 10,),
-                                  Expanded(
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        InkWell(
-                                          onTap: (){
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) => CalculationPage(rate: item),
+                                    SizedBox(width: 10,),
+                                    Expanded(
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          InkWell(
+                                            onTap: (){
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) => CalculationPage(rate: item),
+                                                ),
+                                              );
+                                            },
+
+                                            child: Container(
+                                              alignment: Alignment.centerLeft,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(10),
+                                                //border: Border.all(color: Colors.black54,width: 1)
                                               ),
-                                            );
-                                          },
-
-                                          child: Container(
-                                            alignment: Alignment.centerLeft,
-                                            decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(10),
-                                              //border: Border.all(color: Colors.black54,width: 1)
-                                            ),
-                                            width: 200,
-                                            height: 60,
-                                            child: Text("Buying/Selling ${item['buying_cash']}/${item['selling_cash']}",style: TextStyle(fontSize: 15,fontWeight: FontWeight.w600),),),
-                                        ),
-                                        // Text('Buying: Cash ${item['buying_cash']}'),
-                                        // SizedBox(height: 10,),
-                                        // Text('Selling: Cash ${item['selling_cash']} '),
-                                      ],
+                                              width: 200,
+                                              height: 60,
+                                              child: buildText("Buying/Selling ${item['buying_cash']}/${item['selling_cash']}"),),
+                                          ),
+                                          // Text('Buying: Cash ${item['buying_cash']}'),
+                                          // SizedBox(height: 10,),
+                                          // Text('Selling: Cash ${item['selling_cash']} '),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           );

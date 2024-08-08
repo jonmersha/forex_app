@@ -1,6 +1,6 @@
 import 'package:currency/features/pages/home/dash_bord.dart';
-import 'package:currency/features/pages/rate/buying_order_rates.dart';
-import 'package:currency/features/pages/rate/list_bank_collum.dart';
+import 'package:currency/features/pages/home/chield_page/group_by_currency.dart';
+import 'package:currency/features/pages/home/chield_page/group_by_bank.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -41,10 +41,10 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Theme.of(context).colorScheme.onPrimaryFixed,
         title: Text(widget.title),
       ),
-      body: BuyingOrdered()
+      body: GroupByCuurency()
 
       //RateCard()
        // This trailing comma makes auto-formatting nicer for build methods.
